@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPustaka.net", "MediaPustaka.net\MediaPustaka.net.csproj", "{E20379B2-330B-46B1-9B65-9C357E3F059A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPustaka.net.Tests", "MediaPustaka.net.Tests\MediaPustaka.net.Tests.csproj", "{4571C3FA-FC0A-4C7E-9AAB-427A6F987EBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E20379B2-330B-46B1-9B65-9C357E3F059A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E20379B2-330B-46B1-9B65-9C357E3F059A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E20379B2-330B-46B1-9B65-9C357E3F059A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E20379B2-330B-46B1-9B65-9C357E3F059A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4571C3FA-FC0A-4C7E-9AAB-427A6F987EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4571C3FA-FC0A-4C7E-9AAB-427A6F987EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4571C3FA-FC0A-4C7E-9AAB-427A6F987EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4571C3FA-FC0A-4C7E-9AAB-427A6F987EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
