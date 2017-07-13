@@ -1,7 +1,7 @@
 # MediaPustaka.net
-##Bookstore -> bisa membeli buku
+## Bookstore -> bisa membeli buku
 
-###Objectives: 
+### Objectives: 
 Membuat web application membantu pengunjung toko buku dalam mencari buku yang akan dibeli. Buku yang dicari di database, jika ada akan dimasukkan dalam keranjang online, kemudian pengunjung tinggal mengantre di kasir fisik untuk melakukan pembayaran tanpa perlu berkeliling mencari buku di dalam toko
 
 Feature lists:
