@@ -39,6 +39,9 @@ namespace MediaPustaka.net.Models
     partial void InsertCart(Cart instance);
     partial void UpdateCart(Cart instance);
     partial void DeleteCart(Cart instance);
+    partial void InsertInvoice(Invoice instance);
+    partial void UpdateInvoice(Invoice instance);
+    partial void DeleteInvoice(Invoice instance);
     #endregion
 		
 		public OperationDataContext() : 
@@ -92,6 +95,14 @@ namespace MediaPustaka.net.Models
 			get
 			{
 				return this.GetTable<Cart>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Invoice> Invoices
+		{
+			get
+			{
+				return this.GetTable<Invoice>();
 			}
 		}
 	}
@@ -665,6 +676,236 @@ namespace MediaPustaka.net.Models
 					this.@__shelves = value;
 					this.SendPropertyChanged("_shelves");
 					this.On_shelvesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Invoices")]
+	public partial class Invoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Order_id;
+		
+		private string _User;
+		
+		private int _Jumlah_buku;
+		
+		private decimal _Jumlah_harga;
+		
+		private decimal _Diskon;
+		
+		private double _Total;
+		
+		private string _Kasir;
+		
+		private System.DateTime _Tanggal;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrder_idChanging(int value);
+    partial void OnOrder_idChanged();
+    partial void OnUserChanging(string value);
+    partial void OnUserChanged();
+    partial void OnJumlah_bukuChanging(int value);
+    partial void OnJumlah_bukuChanged();
+    partial void OnJumlah_hargaChanging(decimal value);
+    partial void OnJumlah_hargaChanged();
+    partial void OnDiskonChanging(decimal value);
+    partial void OnDiskonChanged();
+    partial void OnTotalChanging(double value);
+    partial void OnTotalChanged();
+    partial void OnKasirChanging(string value);
+    partial void OnKasirChanged();
+    partial void OnTanggalChanging(System.DateTime value);
+    partial void OnTanggalChanged();
+    #endregion
+		
+		public Invoice()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Order_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Order_id
+		{
+			get
+			{
+				return this._Order_id;
+			}
+			set
+			{
+				if ((this._Order_id != value))
+				{
+					this.OnOrder_idChanging(value);
+					this.SendPropertyChanging();
+					this._Order_id = value;
+					this.SendPropertyChanged("Order_id");
+					this.OnOrder_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string User
+		{
+			get
+			{
+				return this._User;
+			}
+			set
+			{
+				if ((this._User != value))
+				{
+					this.OnUserChanging(value);
+					this.SendPropertyChanging();
+					this._User = value;
+					this.SendPropertyChanged("User");
+					this.OnUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Jumlah_buku", DbType="Int NOT NULL")]
+		public int Jumlah_buku
+		{
+			get
+			{
+				return this._Jumlah_buku;
+			}
+			set
+			{
+				if ((this._Jumlah_buku != value))
+				{
+					this.OnJumlah_bukuChanging(value);
+					this.SendPropertyChanging();
+					this._Jumlah_buku = value;
+					this.SendPropertyChanged("Jumlah_buku");
+					this.OnJumlah_bukuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Jumlah_harga", DbType="Money NOT NULL")]
+		public decimal Jumlah_harga
+		{
+			get
+			{
+				return this._Jumlah_harga;
+			}
+			set
+			{
+				if ((this._Jumlah_harga != value))
+				{
+					this.OnJumlah_hargaChanging(value);
+					this.SendPropertyChanging();
+					this._Jumlah_harga = value;
+					this.SendPropertyChanged("Jumlah_harga");
+					this.OnJumlah_hargaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diskon", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Diskon
+		{
+			get
+			{
+				return this._Diskon;
+			}
+			set
+			{
+				if ((this._Diskon != value))
+				{
+					this.OnDiskonChanging(value);
+					this.SendPropertyChanging();
+					this._Diskon = value;
+					this.SendPropertyChanged("Diskon");
+					this.OnDiskonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kasir", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string Kasir
+		{
+			get
+			{
+				return this._Kasir;
+			}
+			set
+			{
+				if ((this._Kasir != value))
+				{
+					this.OnKasirChanging(value);
+					this.SendPropertyChanging();
+					this._Kasir = value;
+					this.SendPropertyChanged("Kasir");
+					this.OnKasirChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tanggal", DbType="Date NOT NULL")]
+		public System.DateTime Tanggal
+		{
+			get
+			{
+				return this._Tanggal;
+			}
+			set
+			{
+				if ((this._Tanggal != value))
+				{
+					this.OnTanggalChanging(value);
+					this.SendPropertyChanging();
+					this._Tanggal = value;
+					this.SendPropertyChanged("Tanggal");
+					this.OnTanggalChanged();
 				}
 			}
 		}

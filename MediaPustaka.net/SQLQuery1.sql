@@ -1,1 +1,1 @@
-﻿	SELECT * FROM dbo.Carts;
+﻿	SELECT * FROM dbo.Books;

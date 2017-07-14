@@ -20,5 +20,11 @@
         <elementListCompartment Id="e6cba555-b3df-4606-bb4d-aad4a0640581" absoluteBounds="0.76499999999999968, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="70f6c62e-8459-4d19-8443-0ae09b31a32b" absoluteBounds="5.5, 0.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/OperationDataContext/Invoice" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10a0c7e2-f533-498e-9dd0-b34c2ab39b40" absoluteBounds="5.515, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

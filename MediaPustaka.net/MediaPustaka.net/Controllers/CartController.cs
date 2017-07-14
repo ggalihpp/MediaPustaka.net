@@ -9,6 +9,8 @@ namespace MediaPustaka.net.Controllers
 {
     public class CartController : Controller
     {
+        public double Diskon_global = 0.25;
+
         private OperationDataContext context;
 
         public CartController()
@@ -73,11 +75,11 @@ namespace MediaPustaka.net.Controllers
         public ActionResult Delete(int id, ShoppingCart Y)
         {
             ViewBag.Mes = "";
-            ShoppingCart X = Y;
+           
 
             try
             { 
-                Cart cart = context.Carts.Where(xx => xx.ID_Cart == Y.ID_Cart).Single<Cart>();
+                Cart cart = context.Carts.Where(xx => xx.ID_Cart == id).Single<Cart>();
 
                 context.Carts.DeleteOnSubmit(cart);
                 context.SubmitChanges();
@@ -87,8 +89,56 @@ namespace MediaPustaka.net.Controllers
             catch
             {
                 ViewBag.Mes = "Error!";
-                return View(X);
+                return View(Y);
             }
+        }
+
+        public ActionResult Details(int id)
+        {
+            BooksModel Detail = context.Books.Where(x => x.ID_Book == id).Select(
+                x => new BooksModel()
+                {
+                    Id_Book = x.ID_Book,
+                    Title = x.Title,
+                    Sinopis = x.Sinopsis,
+                    Shelves = x.Shelves,
+                    Price = (decimal)x.Price,
+                    Rating = (double)x.Rating,
+                    Stock = (int)x.Stock,
+                    Author = x.Author,
+                    Genre = x.Genre
+                }).SingleOrDefault();
+
+
+            return View(Detail);
+
+        }
+
+        public ActionResult Checkout()
+        {
+            List<InvoiceModel> IV = new List<InvoiceModel>();
+            var query = from Cart in context.Carts select Cart;
+            int count = (from x in context.Carts select x).Count();
+            var sum = context.Carts.Sum(q => q._price);
+            var cart = query.ToList();
+
+            
+                Invoice inv = new Invoice()
+                {
+                    Tanggal = DateTime.Now,
+                    User = "Lexi",
+                    Diskon = (decimal)Diskon_global,
+                    Jumlah_buku = count,
+                    Jumlah_harga = (decimal)sum,
+                    Total = (double)((double)sum - ((double)sum * Diskon_global)),
+                    Kasir = "B2"
+                };
+                context.Invoices.InsertOnSubmit(inv);
+                context.SubmitChanges();
+
+            
+
+            return RedirectToAction("Index", "Invoice");
         }
     }
 }
