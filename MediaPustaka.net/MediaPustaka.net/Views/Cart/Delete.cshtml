@@ -1,0 +1,68 @@
+﻿@model MediaPustaka.net.Models.ShoppingCart
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+@if (ViewBag.Mes != null)
+{
+    <h1>@ViewBag.Mes</h1>
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SongModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model._title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._discount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._shelves)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._shelves)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -14,5 +14,11 @@
         <elementListCompartment Id="d5264dd2-959e-4284-89fa-c9f16be60ead" absoluteBounds="5.6400000000000006, 2.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="c5eeb353-1ea2-4793-831a-043f2df2d887" absoluteBounds="0.75, 1.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/OperationDataContext/Cart" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6cba555-b3df-4606-bb4d-aad4a0640581" absoluteBounds="0.76499999999999968, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -87,13 +87,28 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Edit(int id)
         {
-            ViewBag.ID = id;
+            List<ShoppingCart> Cart = new List<ShoppingCart>();
+            var query = from Book in context.Books where Book.ID_Book == id select Book;
+            var book = query.ToList();
 
-            return View();
+                foreach (var z in book)
+                {
+                    Cart cart = new Cart()
+                    {
+                        _title = z.Title,
+                        _price = z.Price,
+                        _discount = 0,
+                        _genre = z.Genre
+                    };
+                context.Carts.InsertOnSubmit(cart);
+                context.SubmitChanges();
+
+                 };
            
+            return RedirectToAction("Index", "Cart");
+
+
         }
-
-
 
 
     }

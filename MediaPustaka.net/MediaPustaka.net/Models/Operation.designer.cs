@@ -36,6 +36,9 @@ namespace MediaPustaka.net.Models
     partial void InsertBook(Book instance);
     partial void UpdateBook(Book instance);
     partial void DeleteBook(Book instance);
+    partial void InsertCart(Cart instance);
+    partial void UpdateCart(Cart instance);
+    partial void DeleteCart(Cart instance);
     #endregion
 		
 		public OperationDataContext() : 
@@ -81,6 +84,14 @@ namespace MediaPustaka.net.Models
 			get
 			{
 				return this.GetTable<Book>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Cart> Carts
+		{
+			get
+			{
+				return this.GetTable<Cart>();
 			}
 		}
 	}
@@ -472,6 +483,188 @@ namespace MediaPustaka.net.Models
 					this._Shelves = value;
 					this.SendPropertyChanged("Shelves");
 					this.OnShelvesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Carts")]
+	public partial class Cart : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_Cart;
+		
+		private string @__title;
+		
+		private string @__genre;
+		
+		private System.Nullable<double> @__discount;
+		
+		private System.Nullable<decimal> @__price;
+		
+		private string @__shelves;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_CartChanging(int value);
+    partial void OnID_CartChanged();
+    partial void On_titleChanging(string value);
+    partial void On_titleChanged();
+    partial void On_genreChanging(string value);
+    partial void On_genreChanged();
+    partial void On_discountChanging(System.Nullable<double> value);
+    partial void On_discountChanged();
+    partial void On_priceChanging(System.Nullable<decimal> value);
+    partial void On_priceChanged();
+    partial void On_shelvesChanging(string value);
+    partial void On_shelvesChanged();
+    #endregion
+		
+		public Cart()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Cart", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_Cart
+		{
+			get
+			{
+				return this._ID_Cart;
+			}
+			set
+			{
+				if ((this._ID_Cart != value))
+				{
+					this.OnID_CartChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Cart = value;
+					this.SendPropertyChanged("ID_Cart");
+					this.OnID_CartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_title]", Storage="__title", DbType="NVarChar(50)")]
+		public string _title
+		{
+			get
+			{
+				return this.@__title;
+			}
+			set
+			{
+				if ((this.@__title != value))
+				{
+					this.On_titleChanging(value);
+					this.SendPropertyChanging();
+					this.@__title = value;
+					this.SendPropertyChanged("_title");
+					this.On_titleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_genre]", Storage="__genre", DbType="NVarChar(50)")]
+		public string _genre
+		{
+			get
+			{
+				return this.@__genre;
+			}
+			set
+			{
+				if ((this.@__genre != value))
+				{
+					this.On_genreChanging(value);
+					this.SendPropertyChanging();
+					this.@__genre = value;
+					this.SendPropertyChanged("_genre");
+					this.On_genreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_discount]", Storage="__discount", DbType="Float")]
+		public System.Nullable<double> _discount
+		{
+			get
+			{
+				return this.@__discount;
+			}
+			set
+			{
+				if ((this.@__discount != value))
+				{
+					this.On_discountChanging(value);
+					this.SendPropertyChanging();
+					this.@__discount = value;
+					this.SendPropertyChanged("_discount");
+					this.On_discountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_price]", Storage="__price", DbType="Money")]
+		public System.Nullable<decimal> _price
+		{
+			get
+			{
+				return this.@__price;
+			}
+			set
+			{
+				if ((this.@__price != value))
+				{
+					this.On_priceChanging(value);
+					this.SendPropertyChanging();
+					this.@__price = value;
+					this.SendPropertyChanged("_price");
+					this.On_priceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_shelves]", Storage="__shelves", DbType="NVarChar(50)")]
+		public string _shelves
+		{
+			get
+			{
+				return this.@__shelves;
+			}
+			set
+			{
+				if ((this.@__shelves != value))
+				{
+					this.On_shelvesChanging(value);
+					this.SendPropertyChanging();
+					this.@__shelves = value;
+					this.SendPropertyChanged("_shelves");
+					this.On_shelvesChanged();
 				}
 			}
 		}

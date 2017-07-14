@@ -22,4 +22,14 @@
       <Column Name="Shelves" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Carts" Member="Carts">
+    <Type Name="Cart">
+      <Column Name="ID_Cart" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_title]" Member="_title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_genre]" Member="_genre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_discount]" Member="_discount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[_price]" Member="_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[_shelves]" Member="_shelves" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

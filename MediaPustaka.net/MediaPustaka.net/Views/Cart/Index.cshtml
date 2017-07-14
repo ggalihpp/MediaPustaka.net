@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MediaPustaka.net.Models.ShoppingCart>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+    
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model._title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._shelves)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>    
+            @Html.DisplayFor(modelItem => item._title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._shelves)
+        </td>
+        <td>
+            @Html.ActionLink("X", "Edit", new {  }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID_Cart })
+        </td>
+    </tr>
+}
+
+    <h1>@ViewBag.SUM</h1>
+
+</table>
