@@ -71,7 +71,7 @@
             @Html.DisplayFor(modelItem => item.Shelves)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id_Book }) |
+            @Html.ActionLink("Add", "Add", new { id = item.Id_Book }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
@@ -80,3 +80,27 @@
     <h1>@ViewBag.SUM</h1>
 
 </table>
+
+
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-md-4 margin-bot">
+        <div class="thumbnail">
+            <img src="http://placehold.it/350x222" alt="">
+            <div class="caption">
+                <h4 class="pull-right">Rp. @Html.DisplayFor(modelItem => item.Price)</h4>
+                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+            </div>
+            <div class="ratings">
+                <p>
+                    @Html.ActionLink("Add", "Add", new { id = item.Id_Book }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </p>
+            </div>
+        </div>
+    </div>
+}
+</div>

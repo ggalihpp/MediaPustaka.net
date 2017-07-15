@@ -9,7 +9,7 @@ namespace MediaPustaka.net.Controllers
 {
     public class CartController : Controller
     {
-        public double Diskon_global = 0.25;
+        public int Diskon_global = 20;
 
         private OperationDataContext context;
 
@@ -41,7 +41,10 @@ namespace MediaPustaka.net.Controllers
                     _genre = x._genre,
                     _price = (decimal)x._price,
                     _shelves = x._shelves,
-                    _title = x._title
+                    _title = x._title,
+                    Book_ID = x.Book_ID,
+                    PriceAD = x.priceAD,
+                    Username = x.Username,
                 });
             }
 
@@ -80,9 +83,13 @@ namespace MediaPustaka.net.Controllers
             try
             { 
                 Cart cart = context.Carts.Where(xx => xx.ID_Cart == id).Single<Cart>();
-
+               
                 context.Carts.DeleteOnSubmit(cart);
                 context.SubmitChanges();
+
+                //Book update = context.Books.Single(e => e.ID_Book == id);
+                //update.Stock += 1;
+                //context.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
@@ -115,23 +122,20 @@ namespace MediaPustaka.net.Controllers
         }
 
         public ActionResult Checkout()
-        {
-            List<InvoiceModel> IV = new List<InvoiceModel>();
-            var query = from Cart in context.Carts select Cart;
+        {               
             int count = (from x in context.Carts select x).Count();
             var sum = context.Carts.Sum(q => q._price);
-            var cart = query.ToList();
-
-            
+                       
                 Invoice inv = new Invoice()
                 {
                     Tanggal = DateTime.Now,
-                    User = "Lexi",
-                    Diskon = (decimal)Diskon_global,
+                    _username = "Lexi",
+                    Diskon_global = Diskon_global,
                     Jumlah_buku = count,
                     Jumlah_harga = (decimal)sum,
-                    Total = (double)((double)sum - ((double)sum * Diskon_global)),
-                    Kasir = "B2"
+                    Total = ((double)sum - ((double)sum * (double)(Diskon_global / 100 ))),
+                    Kasir = "B2",
+                    Pembayaran = "Cash"
                 };
                 context.Invoices.InsertOnSubmit(inv);
                 context.SubmitChanges();

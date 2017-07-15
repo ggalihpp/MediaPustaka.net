@@ -1,20 +1,19 @@
 ﻿@model IEnumerable<MediaPustaka.net.Models.ShoppingCart>
 
 @{
-    ViewBag.Title = "Shopping Cart";
+    ViewBag.Title = "Index";
 }
 
 <h2>Shopping Cart</h2>
-
-
-    
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Cart)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model._title)
         </th>
@@ -30,12 +29,24 @@
         <th>
             @Html.DisplayNameFor(model => model._shelves)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Book_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceAD)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>    
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Cart)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item._title)
         </td>
         <td>
@@ -51,17 +62,22 @@
             @Html.DisplayFor(modelItem => item._shelves)
         </td>
         <td>
-            @Html.ActionLink("X", "Edit", new {  }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID_Cart }) |
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Book_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceAD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Book_ID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.ID_Cart })
         </td>
     </tr>
 }
 
-    
-
 </table>
 
-<h1>@ViewBag.SUM</h1>
-
-@Html.ActionLink("CHECKOUT", "Checkout")
+<h3>@Html.ActionLink("Checkout", "Checkout", new { /* id=item.PrimaryKey */ })</h3>

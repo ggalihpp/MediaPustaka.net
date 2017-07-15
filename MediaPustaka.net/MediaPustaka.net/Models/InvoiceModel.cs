@@ -15,12 +15,14 @@ namespace MediaPustaka.net.Models
 
         public decimal Jumlah_Harga { get; set; }
 
-        public decimal Diskon { get; set; }
+        public int Diskon { get; set; }
 
         public double Total { get; set; }
 
         public string Kasir { get; set; }
 
         public DateTime Tanggal { get; set; }
+
+        public string Pembayaran { get; set; }
     }
 }

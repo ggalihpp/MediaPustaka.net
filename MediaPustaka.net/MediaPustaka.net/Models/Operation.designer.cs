@@ -33,15 +33,15 @@ namespace MediaPustaka.net.Models
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
-    partial void InsertBook(Book instance);
-    partial void UpdateBook(Book instance);
-    partial void DeleteBook(Book instance);
     partial void InsertCart(Cart instance);
     partial void UpdateCart(Cart instance);
     partial void DeleteCart(Cart instance);
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
+    partial void InsertBook(Book instance);
+    partial void UpdateBook(Book instance);
+    partial void DeleteBook(Book instance);
     #endregion
 		
 		public OperationDataContext() : 
@@ -82,14 +82,6 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Book> Books
-		{
-			get
-			{
-				return this.GetTable<Book>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Cart> Carts
 		{
 			get
@@ -103,6 +95,14 @@ namespace MediaPustaka.net.Models
 			get
 			{
 				return this.GetTable<Invoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Book> Books
+		{
+			get
+			{
+				return this.GetTable<Book>();
 			}
 		}
 	}
@@ -265,260 +265,6 @@ namespace MediaPustaka.net.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Books")]
-	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_Book;
-		
-		private string _Title;
-		
-		private string _Author;
-		
-		private string _Genre;
-		
-		private System.Nullable<double> _Rating;
-		
-		private string _Sinopsis;
-		
-		private System.Nullable<decimal> _Price;
-		
-		private System.Nullable<int> _Stock;
-		
-		private string _Shelves;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_BookChanging(int value);
-    partial void OnID_BookChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnAuthorChanging(string value);
-    partial void OnAuthorChanged();
-    partial void OnGenreChanging(string value);
-    partial void OnGenreChanged();
-    partial void OnRatingChanging(System.Nullable<double> value);
-    partial void OnRatingChanged();
-    partial void OnSinopsisChanging(string value);
-    partial void OnSinopsisChanged();
-    partial void OnPriceChanging(System.Nullable<decimal> value);
-    partial void OnPriceChanged();
-    partial void OnStockChanging(System.Nullable<int> value);
-    partial void OnStockChanged();
-    partial void OnShelvesChanging(string value);
-    partial void OnShelvesChanged();
-    #endregion
-		
-		public Book()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Book", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_Book
-		{
-			get
-			{
-				return this._ID_Book;
-			}
-			set
-			{
-				if ((this._ID_Book != value))
-				{
-					this.OnID_BookChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Book = value;
-					this.SendPropertyChanged("ID_Book");
-					this.OnID_BookChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(100)")]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(100)")]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this.OnAuthorChanging(value);
-					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="NVarChar(100)")]
-		public string Genre
-		{
-			get
-			{
-				return this._Genre;
-			}
-			set
-			{
-				if ((this._Genre != value))
-				{
-					this.OnGenreChanging(value);
-					this.SendPropertyChanging();
-					this._Genre = value;
-					this.SendPropertyChanged("Genre");
-					this.OnGenreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Float")]
-		public System.Nullable<double> Rating
-		{
-			get
-			{
-				return this._Rating;
-			}
-			set
-			{
-				if ((this._Rating != value))
-				{
-					this.OnRatingChanging(value);
-					this.SendPropertyChanging();
-					this._Rating = value;
-					this.SendPropertyChanged("Rating");
-					this.OnRatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sinopsis", DbType="NVarChar(MAX)")]
-		public string Sinopsis
-		{
-			get
-			{
-				return this._Sinopsis;
-			}
-			set
-			{
-				if ((this._Sinopsis != value))
-				{
-					this.OnSinopsisChanging(value);
-					this.SendPropertyChanging();
-					this._Sinopsis = value;
-					this.SendPropertyChanged("Sinopsis");
-					this.OnSinopsisChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money")]
-		public System.Nullable<decimal> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Int")]
-		public System.Nullable<int> Stock
-		{
-			get
-			{
-				return this._Stock;
-			}
-			set
-			{
-				if ((this._Stock != value))
-				{
-					this.OnStockChanging(value);
-					this.SendPropertyChanging();
-					this._Stock = value;
-					this.SendPropertyChanged("Stock");
-					this.OnStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Shelves", DbType="NVarChar(50)")]
-		public string Shelves
-		{
-			get
-			{
-				return this._Shelves;
-			}
-			set
-			{
-				if ((this._Shelves != value))
-				{
-					this.OnShelvesChanging(value);
-					this.SendPropertyChanging();
-					this._Shelves = value;
-					this.SendPropertyChanged("Shelves");
-					this.OnShelvesChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Carts")]
 	public partial class Cart : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -531,11 +277,17 @@ namespace MediaPustaka.net.Models
 		
 		private string @__genre;
 		
-		private System.Nullable<double> @__discount;
+		private double @__discount;
 		
-		private System.Nullable<decimal> @__price;
+		private decimal @__price;
 		
 		private string @__shelves;
+		
+		private int _Book_ID;
+		
+		private string _Username;
+		
+		private decimal _priceAD;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -547,12 +299,18 @@ namespace MediaPustaka.net.Models
     partial void On_titleChanged();
     partial void On_genreChanging(string value);
     partial void On_genreChanged();
-    partial void On_discountChanging(System.Nullable<double> value);
+    partial void On_discountChanging(double value);
     partial void On_discountChanged();
-    partial void On_priceChanging(System.Nullable<decimal> value);
+    partial void On_priceChanging(decimal value);
     partial void On_priceChanged();
     partial void On_shelvesChanging(string value);
     partial void On_shelvesChanged();
+    partial void OnBook_IDChanging(int value);
+    partial void OnBook_IDChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnpriceADChanging(decimal value);
+    partial void OnpriceADChanged();
     #endregion
 		
 		public Cart()
@@ -580,7 +338,7 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_title]", Storage="__title", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_title]", Storage="__title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string _title
 		{
 			get
@@ -600,7 +358,7 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_genre]", Storage="__genre", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_genre]", Storage="__genre", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string _genre
 		{
 			get
@@ -620,8 +378,8 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_discount]", Storage="__discount", DbType="Float")]
-		public System.Nullable<double> _discount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_discount]", Storage="__discount", DbType="Float NOT NULL")]
+		public double _discount
 		{
 			get
 			{
@@ -640,8 +398,8 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_price]", Storage="__price", DbType="Money")]
-		public System.Nullable<decimal> _price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_price]", Storage="__price", DbType="Decimal(18,2) NOT NULL")]
+		public decimal _price
 		{
 			get
 			{
@@ -660,7 +418,7 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_shelves]", Storage="__shelves", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_shelves]", Storage="__shelves", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string _shelves
 		{
 			get
@@ -676,6 +434,66 @@ namespace MediaPustaka.net.Models
 					this.@__shelves = value;
 					this.SendPropertyChanged("_shelves");
 					this.On_shelvesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Book_ID", DbType="Int NOT NULL")]
+		public int Book_ID
+		{
+			get
+			{
+				return this._Book_ID;
+			}
+			set
+			{
+				if ((this._Book_ID != value))
+				{
+					this.OnBook_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Book_ID = value;
+					this.SendPropertyChanged("Book_ID");
+					this.OnBook_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_priceAD", DbType="Decimal(18,2) NOT NULL")]
+		public decimal priceAD
+		{
+			get
+			{
+				return this._priceAD;
+			}
+			set
+			{
+				if ((this._priceAD != value))
+				{
+					this.OnpriceADChanging(value);
+					this.SendPropertyChanging();
+					this._priceAD = value;
+					this.SendPropertyChanged("priceAD");
+					this.OnpriceADChanged();
 				}
 			}
 		}
@@ -709,13 +527,13 @@ namespace MediaPustaka.net.Models
 		
 		private int _Order_id;
 		
-		private string _User;
+		private string @__username;
 		
 		private int _Jumlah_buku;
 		
 		private decimal _Jumlah_harga;
 		
-		private decimal _Diskon;
+		private int _Diskon_global;
 		
 		private double _Total;
 		
@@ -723,26 +541,30 @@ namespace MediaPustaka.net.Models
 		
 		private System.DateTime _Tanggal;
 		
+		private string _Pembayaran;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnOrder_idChanging(int value);
     partial void OnOrder_idChanged();
-    partial void OnUserChanging(string value);
-    partial void OnUserChanged();
+    partial void On_usernameChanging(string value);
+    partial void On_usernameChanged();
     partial void OnJumlah_bukuChanging(int value);
     partial void OnJumlah_bukuChanged();
     partial void OnJumlah_hargaChanging(decimal value);
     partial void OnJumlah_hargaChanged();
-    partial void OnDiskonChanging(decimal value);
-    partial void OnDiskonChanged();
+    partial void OnDiskon_globalChanging(int value);
+    partial void OnDiskon_globalChanged();
     partial void OnTotalChanging(double value);
     partial void OnTotalChanged();
     partial void OnKasirChanging(string value);
     partial void OnKasirChanged();
     partial void OnTanggalChanging(System.DateTime value);
     partial void OnTanggalChanged();
+    partial void OnPembayaranChanging(string value);
+    partial void OnPembayaranChanged();
     #endregion
 		
 		public Invoice()
@@ -770,22 +592,22 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[User]", Storage="_User", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string User
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_username]", Storage="__username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string _username
 		{
 			get
 			{
-				return this._User;
+				return this.@__username;
 			}
 			set
 			{
-				if ((this._User != value))
+				if ((this.@__username != value))
 				{
-					this.OnUserChanging(value);
+					this.On_usernameChanging(value);
 					this.SendPropertyChanging();
-					this._User = value;
-					this.SendPropertyChanged("User");
-					this.OnUserChanged();
+					this.@__username = value;
+					this.SendPropertyChanged("_username");
+					this.On_usernameChanged();
 				}
 			}
 		}
@@ -810,7 +632,7 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Jumlah_harga", DbType="Money NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Jumlah_harga", DbType="Decimal(18,2) NOT NULL")]
 		public decimal Jumlah_harga
 		{
 			get
@@ -830,22 +652,22 @@ namespace MediaPustaka.net.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diskon", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Diskon
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diskon_global", DbType="Int NOT NULL")]
+		public int Diskon_global
 		{
 			get
 			{
-				return this._Diskon;
+				return this._Diskon_global;
 			}
 			set
 			{
-				if ((this._Diskon != value))
+				if ((this._Diskon_global != value))
 				{
-					this.OnDiskonChanging(value);
+					this.OnDiskon_globalChanging(value);
 					this.SendPropertyChanging();
-					this._Diskon = value;
-					this.SendPropertyChanged("Diskon");
-					this.OnDiskonChanged();
+					this._Diskon_global = value;
+					this.SendPropertyChanged("Diskon_global");
+					this.OnDiskon_globalChanged();
 				}
 			}
 		}
@@ -906,6 +728,304 @@ namespace MediaPustaka.net.Models
 					this._Tanggal = value;
 					this.SendPropertyChanged("Tanggal");
 					this.OnTanggalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pembayaran", DbType="NChar(10)")]
+		public string Pembayaran
+		{
+			get
+			{
+				return this._Pembayaran;
+			}
+			set
+			{
+				if ((this._Pembayaran != value))
+				{
+					this.OnPembayaranChanging(value);
+					this.SendPropertyChanging();
+					this._Pembayaran = value;
+					this.SendPropertyChanged("Pembayaran");
+					this.OnPembayaranChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Books")]
+	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_Book;
+		
+		private string _Title;
+		
+		private string _Author;
+		
+		private string _Genre;
+		
+		private double _Rating;
+		
+		private string _Sinopsis;
+		
+		private decimal _Price;
+		
+		private int _Stock;
+		
+		private string _Shelves;
+		
+		private string _Images;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_BookChanging(int value);
+    partial void OnID_BookChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnGenreChanging(string value);
+    partial void OnGenreChanged();
+    partial void OnRatingChanging(double value);
+    partial void OnRatingChanged();
+    partial void OnSinopsisChanging(string value);
+    partial void OnSinopsisChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnStockChanging(int value);
+    partial void OnStockChanged();
+    partial void OnShelvesChanging(string value);
+    partial void OnShelvesChanged();
+    partial void OnImagesChanging(string value);
+    partial void OnImagesChanged();
+    #endregion
+		
+		public Book()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Book", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_Book
+		{
+			get
+			{
+				return this._ID_Book;
+			}
+			set
+			{
+				if ((this._ID_Book != value))
+				{
+					this.OnID_BookChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Book = value;
+					this.SendPropertyChanged("ID_Book");
+					this.OnID_BookChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Genre
+		{
+			get
+			{
+				return this._Genre;
+			}
+			set
+			{
+				if ((this._Genre != value))
+				{
+					this.OnGenreChanging(value);
+					this.SendPropertyChanging();
+					this._Genre = value;
+					this.SendPropertyChanged("Genre");
+					this.OnGenreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Float NOT NULL")]
+		public double Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sinopsis", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Sinopsis
+		{
+			get
+			{
+				return this._Sinopsis;
+			}
+			set
+			{
+				if ((this._Sinopsis != value))
+				{
+					this.OnSinopsisChanging(value);
+					this.SendPropertyChanging();
+					this._Sinopsis = value;
+					this.SendPropertyChanged("Sinopsis");
+					this.OnSinopsisChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Int NOT NULL")]
+		public int Stock
+		{
+			get
+			{
+				return this._Stock;
+			}
+			set
+			{
+				if ((this._Stock != value))
+				{
+					this.OnStockChanging(value);
+					this.SendPropertyChanging();
+					this._Stock = value;
+					this.SendPropertyChanged("Stock");
+					this.OnStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Shelves", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Shelves
+		{
+			get
+			{
+				return this._Shelves;
+			}
+			set
+			{
+				if ((this._Shelves != value))
+				{
+					this.OnShelvesChanging(value);
+					this.SendPropertyChanging();
+					this._Shelves = value;
+					this.SendPropertyChanged("Shelves");
+					this.OnShelvesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Images", DbType="NVarChar(50)")]
+		public string Images
+		{
+			get
+			{
+				return this._Images;
+			}
+			set
+			{
+				if ((this._Images != value))
+				{
+					this.OnImagesChanging(value);
+					this.SendPropertyChanging();
+					this._Images = value;
+					this.SendPropertyChanged("Images");
+					this.OnImagesChanged();
 				}
 			}
 		}

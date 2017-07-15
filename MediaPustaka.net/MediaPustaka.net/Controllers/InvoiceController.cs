@@ -23,7 +23,7 @@ namespace MediaPustaka.net.Controllers
             List<InvoiceModel> Invoice = new List<InvoiceModel>();
 
             // perform Linq
-            var query = from xxx in context.Invoices where xxx.User == "Alex" select xxx;
+            var query = from xxx in context.Invoices where xxx._username == "Lexi" select xxx;
 
             //store those thing to list
             var CS = query.ToList();
@@ -34,14 +34,15 @@ namespace MediaPustaka.net.Controllers
             {
                 Invoice.Add(new InvoiceModel()
                 {
-                    Diskon = x.Diskon,
+                    Diskon = x.Diskon_global,
                     ID = x.Order_id,
                     Jumlah_Buku = x.Jumlah_buku,
                     Jumlah_Harga = x.Jumlah_harga,
                     Kasir = x.Kasir,
                     Tanggal = x.Tanggal,
                     Total = x.Total,
-                    User = x.User
+                    User = x._username,
+                    Pembayaran = x.Pembayaran
                 });
             }
 

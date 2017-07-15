@@ -9,39 +9,44 @@
       <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Books" Member="Books">
-    <Type Name="Book">
-      <Column Name="ID_Book" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Author" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Genre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Rating" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Sinopsis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Shelves" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Carts" Member="Carts">
     <Type Name="Cart">
       <Column Name="ID_Cart" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="[_title]" Member="_title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[_genre]" Member="_genre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[_discount]" Member="_discount" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="[_price]" Member="_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="[_shelves]" Member="_shelves" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_title]" Member="_title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_genre]" Member="_genre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_discount]" Member="_discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[_price]" Member="_price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[_shelves]" Member="_shelves" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Book_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="priceAD" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Invoices" Member="Invoices">
     <Type Name="Invoice">
       <Column Name="Order_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_username]" Member="_username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Jumlah_buku" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Jumlah_harga" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="Diskon" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Jumlah_harga" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Diskon_global" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Kasir" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="Tanggal" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Pembayaran" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Books" Member="Books">
+    <Type Name="Book">
+      <Column Name="ID_Book" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Rating" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Sinopsis" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Shelves" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Images" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

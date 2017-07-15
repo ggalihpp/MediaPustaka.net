@@ -73,6 +73,7 @@ namespace MediaPustaka.net.Controllers
                     Price = Z.Price,
                     Stock = Z.Stock,
                     Shelves = Z.Shelves
+                   
                 };
 
                 context.Books.InsertOnSubmit(book);
@@ -85,7 +86,7 @@ namespace MediaPustaka.net.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Add(int id)
         {
             List<ShoppingCart> Cart = new List<ShoppingCart>();
             var query = from Book in context.Books where Book.ID_Book == id select Book;
@@ -93,18 +94,26 @@ namespace MediaPustaka.net.Controllers
 
                 foreach (var z in book)
                 {
-                    Cart cart = new Cart()
+                Cart cart = new Cart()
                     {
                         _title = z.Title,
                         _price = z.Price,
                         _discount = 0,
-                        _genre = z.Genre
+                        _genre = z.Genre,
+                        Username = "Ini User",
+                        Book_ID = z.ID_Book,
+                        priceAD = z.Price - (z.Price * 0),
+                        _shelves = z.Shelves,                        
                     };
                 context.Carts.InsertOnSubmit(cart);
                 context.SubmitChanges();
 
-                 };
-           
+                };
+
+            Book update = context.Books.Single(e => e.ID_Book == id);
+            update.Stock -= 1;
+            context.SubmitChanges();
+
             return RedirectToAction("Index", "Cart");
 
 
