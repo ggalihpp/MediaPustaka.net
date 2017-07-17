@@ -22,6 +22,8 @@ namespace MediaPustaka.net.Controllers
         [HttpGet]
         public ActionResult Registration()
         {
+            ViewBag.Category = "Registration";
+
             return View();
         }
 
@@ -104,7 +106,7 @@ namespace MediaPustaka.net.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Books");
+                            return RedirectToAction("Loading", "Home");
                         }
 
                     }
@@ -129,7 +131,7 @@ namespace MediaPustaka.net.Controllers
             Response.Cache.SetNoStore();
             Response.CacheControl = "no-cache";
 
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Login", "User");
         }
 
         [NonAction]

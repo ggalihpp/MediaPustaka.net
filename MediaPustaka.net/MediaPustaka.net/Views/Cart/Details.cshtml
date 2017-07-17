@@ -4,46 +4,61 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<nav class="navbar navbar-default" style="margin-bottom:-5px;">
+    <div class="container-fluid">
+        <div class="navbar-header" style="padding-left: 10px">
+            <button type="button" class="btn btn-default navbar-btn pull-left" onclick="location.href='@Url.Action("Index", "Books")';return false;">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <div class="navbar-text navbar-brand-centered"><h3>@ViewBag.Category</h3></div>
+        </div>
+    </div>
+</nav>
 
-<div>
-    <h4>BooksModel</h4>
-    <hr />
-   
-<div class="row">
-    <div class="col-md-8">
-        <div class="panel panel-default  panel--styled">
-            <div class="panel-body">
-                <div class="col-md-12 panelTop">
-                    <div class="col-md-4">
-                        <img class="img-responsive" src="http://placehold.it/350x350" alt="" />
-                    </div>
-                    <div class="col-md-8">
-                        <h2 style="margin-top:0px;"><span style="font-size:48px; color:orangered">"</span> @Html.DisplayFor(model => model.Title) <span style="font-size:48px; color:orangered">"</span></h2>
-                        <h4><span style="font-size:14px; color:darkblue">by : </span>@Html.DisplayFor(model => model.Author)  <span style="font-size:14px; color:darkblue">genre : </span> @Html.DisplayFor(model => model.Genre)</h4>
-                        <p style="text-align:justify">@Html.DisplayFor(model => model.Sinopis)</p>
+
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="https://www.kaft.com/static/images/cache/313/tisort_ozgurruh_1990_313_313.jpg?cacheID=1429301256000" /></div>
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    <div class="col-md-4 text-center">
-                        <button class="btn btn-lg btn-add-to-cart"  onclick="location.href='@Url.Action("Add", "Books", new { id = ViewBag.ID })';return false;">
+                <div class="details col-md-6">
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>Title</div></h3>
+                        <hr>
+                        <h4> @Html.DisplayFor(model => model.Title)</h4>
+                    </div>
+                    <div class="panel panel-default text-center">
+                                           <div class="rating">
+                            <h3><div class="panel-title"><span class="glyphicon glyphicon-info-sign"></span>Info</div></h3>
+                            <hr>
+                                               
+                            <h4><span style="font-size:14px; color:darkblue">Author : </span>@Html.DisplayFor(model => model.Author)  <span style="font-size:14px; color:darkblue">Genre : </span> @Html.DisplayFor(model => model.Genre)</h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-comment"></span>Synopsis</div></h3>
+                        <hr>
+                        <h4>@Html.DisplayFor(model => model.Sinopis)</h4>
+                    </div>
+                    <div class="panel panel-default text-center">
+                        <h3><div class="panel-title"><span class="glyphicon glyphicon-credit-card"></span>Price</div></h3>
+                        <hr>
+                        <h2><font color="purple">Rp. @Html.DisplayFor(model => model.Price)</h2></font>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-lg btn-add-to-cart" onclick="location.href='@Url.Action("Add", "Books", new { id = ViewBag.ID })';return false;">
                             <span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart
                         </button>
-                    </div>
-                    <div class="col-md-4 text-left">
-                        <h5>Price <span class="itemPrice">Rp. @Html.DisplayFor(model => model.Price)</span></h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="pull-right"><span style="font-size:14px; color:darkblue">Stok :</span>  @Html.DisplayFor(model => model.Stock) <span style="font-size:14px; color:darkblue">Kasir :</span> @Html.DisplayFor(model => model.Shelves)</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br>
+<br>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

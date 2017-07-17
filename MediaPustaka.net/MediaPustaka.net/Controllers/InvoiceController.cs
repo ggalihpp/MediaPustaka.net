@@ -23,7 +23,7 @@ namespace MediaPustaka.net.Controllers
             List<InvoiceModel> Invoice = new List<InvoiceModel>();
 
             // perform Linq
-            var query = from xxx in context.Invoices where xxx._username == "Lexi" select xxx;
+            var query = from xxx in context.Invoices where xxx._username == Session["Username"].ToString() select xxx;
 
             //store those thing to list
             var CS = query.ToList();

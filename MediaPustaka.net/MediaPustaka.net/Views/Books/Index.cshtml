@@ -128,7 +128,6 @@
 @using (Html.BeginForm("Search", "Books", FormMethod.Get))
     {
         //the following are search options
-        <b> Search Option: </b>
             @Html.DropDownList("option",
                             new SelectList(ViewBag.Option),
                             "Select Option",
@@ -138,6 +137,7 @@
     }
 
 <!-- #endregion -->
+
 
 <div class="row">
 @foreach (var item in Model)
@@ -151,13 +151,36 @@
                 <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
             </div>
             <div class="ratings">
+                <button type="button" class="btn btn-lg btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</button>
+                <button type="button" class="button" onclick="location.href='@Url.Action("Details", "Cart", new { id = item.Id_Book })';return false;">Details</button>
                 <p>
-                    @Html.ActionLink("Add", "Add", new { id = item.Id_Book }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                   
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </p>
             </div>
+        </div>  
+    </div>
+
+ <!-- AddToCart MODAL -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add to Cart </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are You sure to add the item to cart?.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Add", "Books", new { id = item.Id_Book })';return false;">Yes</button>
+                    <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">No</button>
+                </div>
+            </div>
         </div>
     </div>
+
+
 }
 </div>
+

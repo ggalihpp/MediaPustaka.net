@@ -138,11 +138,12 @@ namespace MediaPustaka.net.Controllers
                 {
                 Cart cart = new Cart()
                     {
+                        
                         _title = z.Title,
                         _price = z.Price,
                         _discount = 0,
                         _genre = z.Genre,
-                        Username = "Ini User",
+                        Username = Session["Username"].ToString(),
                         Book_ID = z.ID_Book,
                         priceAD = z.Price - (z.Price * 0),
                         _shelves = z.Shelves,                        

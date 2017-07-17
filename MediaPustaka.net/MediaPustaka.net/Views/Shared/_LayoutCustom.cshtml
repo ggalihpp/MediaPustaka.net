@@ -44,20 +44,20 @@
                     <li><a href="#">Stores</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navb ar-nav navbar-right">
                     @if (@Session["Username"] == null)
                     {
                         <li><a href='#'><span class='glyphicon glyphicon-user'></span> Guest </a></li>
                     }
                     else
                     {
-                       <li><a href='@Url.Action("Logout", "User")'><span class='glyphicon glyphicon-user'></span> @(@Session["Username"] </a></li>
+                       <li><a href='@Url.Action("Logout", "User")'><span class='glyphicon glyphicon-user'></span> @Session["Username"] </a></li>
 
                     }
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
 
-</div>
+            </div>
         </div>
     </nav>
     <div class="container body-content">

@@ -2,16 +2,26 @@
 
 @{
     ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Partial.cshtml";
 }
 
-<h2>Registration</h2>
+<nav class="navbar navbar-default" style="margin-bottom:-5px;">
+    <div class="container-fluid">
+        <div class="navbar-header" style="padding-left: 10px">
+            <button type="button" class="btn btn-default navbar-btn pull-left" onclick="location.href='@Url.Action("Login", "User")';return false;">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <div class="navbar-text navbar-brand-centered"><h3>@ViewBag.Category</h3></div>
+        </div>
+    </div>
+</nav>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UserModel</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -58,12 +68,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success btn-md" />
             </div>
         </div>
+        
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

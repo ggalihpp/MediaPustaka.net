@@ -21,11 +21,13 @@ namespace MediaPustaka.net.Controllers
         // GET: Cart
         public ActionResult Index()
         {
+            ViewBag.Category = "Details ";
+
             // Create the  BooksList Variable
             List<ShoppingCart> CartList = new List<ShoppingCart>();
 
             // perform Linq
-            var query = from Cart in context.Carts select Cart;
+            var query = from Cart in context.Carts where Cart.Username == Session["Username"].ToString() select Cart;
 
             //store those thing to list
             var CS = query.ToList();

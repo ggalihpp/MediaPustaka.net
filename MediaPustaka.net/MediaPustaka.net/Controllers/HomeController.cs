@@ -29,6 +29,9 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Loading()
         {
+            ViewBag.Messag = "Thank you, We'll redirecting you to our homepage . . .";
+
+            Response.AddHeader("REFRESH", "3;URL=../Books/Index");
             return View();
         }
     }
