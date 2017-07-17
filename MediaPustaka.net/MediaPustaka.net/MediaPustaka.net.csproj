@@ -146,6 +146,8 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +159,8 @@
       <DependentUpon>Operation.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoopingCart.cs" />
+    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +221,8 @@
     <Content Include="Views\Shared\_LayoutCustom.cshtml" />
     <Content Include="Views\Home\Loading.cshtml" />
     <Content Include="Views\Books\Search.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,18 +9,19 @@
     <link rel="stylesheet" href="~/Content/Custom.css" />
     <script src="~/Scripts/Custom.js"></script>
 
-    <script> //window.addEventListener("scroll", function () {
- //           if (window.scrollY > 200) {
- //               $('.navbar').fadeOut();
- //               $('footer').fadeIn();
- //           }
- //           else {
- //               $('.navbar').fadeIn();
- //               $('footer').fadeOut();
- //           }
- //       }, false);
+    <script> window.addEventListener("scroll", function () {
+            if (window.scrollY > 200) {
+                $('.navbar').fadeOut();
+                $('footer').fadeIn();
+            }
+            else {
+                $('.navbar').fadeIn();
+                $('footer').fadeOut();
+            }
+        }, false);
     </script>
 
+   
     
 </head>
 <body>
@@ -44,10 +45,19 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                    @if (@Session["Username"] == null)
+                    {
+                        <li><a href='#'><span class='glyphicon glyphicon-user'></span> Guest </a></li>
+                    }
+                    else
+                    {
+                       <li><a href='@Url.Action("Logout", "User")'><span class='glyphicon glyphicon-user'></span> @(@Session["Username"] </a></li>
+
+                    }
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
-            </div>
+
+</div>
         </div>
     </nav>
     <div class="container body-content">

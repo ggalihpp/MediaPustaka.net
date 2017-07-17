@@ -132,11 +132,11 @@ namespace MediaPustaka.net.Controllers
                 Invoice inv = new Invoice()
                 {
                     Tanggal = DateTime.Now,
-                    _username = "Lexi",
+                    _username = Session["Username"].ToString(),
                     Diskon_global = Diskon_global,
                     Jumlah_buku = count,
-                    Jumlah_harga = (decimal)sum,
-                    Total = ((double)sum - ((double)sum * (double)(Diskon_global / 100 ))),
+                    Jumlah_harga = sum,
+                    Total = ((float)sum - ((float)sum * (Diskon_global / 100))),
                     Kasir = "B2",
                     Pembayaran = "Cash"
                 };
