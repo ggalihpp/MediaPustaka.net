@@ -27,7 +27,9 @@
 
                 <div class="col-md-12">
                     <div class="col-md-4 text-center">
-                        <button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
+                        <button class="btn btn-lg btn-add-to-cart"  onclick="location.href='@Url.Action("Add", "Books", new { id = ViewBag.ID })';return false;">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart
+                        </button>
                     </div>
                     <div class="col-md-4 text-left">
                         <h5>Price <span class="itemPrice">Rp. @Html.DisplayFor(model => model.Price)</span></h5>

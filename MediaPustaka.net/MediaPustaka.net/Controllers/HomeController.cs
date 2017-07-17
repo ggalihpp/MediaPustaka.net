@@ -26,5 +26,10 @@ namespace MediaPustaka.net.Controllers
 
             return View();
         }
+
+        public ActionResult Loading()
+        {
+            return View();
+        }
     }
 }

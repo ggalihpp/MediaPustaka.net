@@ -102,6 +102,8 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Details(int id)
         {
+            ViewBag.ID = id;
+
             BooksModel Detail = context.Books.Where(x => x.ID_Book == id).Select(
                 x => new BooksModel()
                 {
@@ -115,6 +117,7 @@ namespace MediaPustaka.net.Controllers
                     Author = x.Author,
                     Genre = x.Genre
                 }).SingleOrDefault();
+
 
 
             return View(Detail);

@@ -27,31 +27,73 @@ namespace MediaPustaka.net.Controllers
             // perform Linq
             var query = from Book in context.Books select Book;
 
-            //store those thing to list
-            var books = query.ToList();
+            Populate(BookList, query);
 
+            List<string> Option = new List<string>();
+            Option.Add("Author");
+            Option.Add("Genre");
+            Option.Add("Title");
 
-            //Add Books to Booklist
-            foreach (var x in books)
-            {
-                BookList.Add(new BooksModel()
-                {
-                    Id_Book = x.ID_Book,
-                    Title = x.Title,
-                    Author = x.Author,
-                    Genre = x.Genre,
-                    Sinopis = x.Sinopsis,
-                    Shelves = x.Shelves,
-                    Stock = (int)x.Stock,
-                    Rating = (double)x.Rating,
-                    Price = (decimal)x.Price
-                });
-
-            }
+            ViewBag.Option = Option;
 
 
             return View(BookList);
         }
+
+       
+
+
+
+        //the first parameter is the option that we choose and the second parameter will use the textbox value  
+        public ActionResult Search(string option, string search)
+        {
+
+            List<string> Option = new List<string>();
+            Option.Add("Author");
+            Option.Add("Genre");
+            Option.Add("Title");
+
+            ViewBag.Option = Option;
+
+
+            //if a user choose the radio button option as Subject  
+            if (option == "Author")
+                {
+                
+                    List<BooksModel> BookList = new List<BooksModel>();
+                    var Author = from Book in context.Books.Where(x => x.Author.Contains(search)) select Book;
+                    Populate(BookList, Author);
+
+                    return View(BookList);
+                }
+                else if (option == "Genre")
+                {
+                    List<BooksModel> BookList = new List<BooksModel>();
+                    var Genre = from Book in context.Books.Where(x => x.Genre.Contains(search)) select Book;
+                    Populate(BookList, Genre);
+
+                    return View(BookList);
+                }
+                else if (option == "Title")
+                {
+                    List<BooksModel> BookList = new List<BooksModel>();
+                    var Title = from Book in context.Books.Where(x => x.Title.Contains(search)) select Book;
+                    Populate(BookList, Title);
+
+                    return View(BookList);
+                }
+                else
+                {
+                    List<BooksModel> BookList = new List<BooksModel>();
+                    var query = from Book in context.Books select Book;
+                    Populate(BookList, query);
+
+                    return View(BookList);
+                }
+            
+        }
+
+
 
         public ActionResult Create()
         {
@@ -119,6 +161,33 @@ namespace MediaPustaka.net.Controllers
 
         }
 
+        private static void Populate(List<BooksModel> BookList, IQueryable<Book> query)
+        {
+            //store those thing to list
+            var books = query.ToList();
 
+
+            //Add Books to Booklist
+            foreach (var x in books)
+            {
+                BookList.Add(new BooksModel()
+                {
+                    Id_Book = x.ID_Book,
+                    Title = x.Title,
+                    Author = x.Author,
+                    Genre = x.Genre,
+                    Sinopis = x.Sinopsis,
+                    Shelves = x.Shelves,
+                    Stock = (int)x.Stock,
+                    Rating = (double)x.Rating,
+                    Price = (decimal)x.Price
+                });
+
+            }
+        }
     }
+
+
+   
+
 }
