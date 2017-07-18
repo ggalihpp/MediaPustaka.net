@@ -54,9 +54,7 @@ namespace MediaPustaka.net.Controllers
             Option.Add("Title");
 
             ViewBag.Option = Option;
-
-
-            //if a user choose the radio button option as Subject  
+          
             if (option == "Author")
                 {
                 
@@ -97,7 +95,14 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Create()
         {
-            return View();
+           if(Session["Username"].ToString() == "admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("AdminOnly", "Home");
+            }
         }
 
         [HttpPost]
@@ -130,15 +135,16 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Add(int id)
         {
-            List<ShoppingCart> Cart = new List<ShoppingCart>();
-            var query = from Book in context.Books where Book.ID_Book == id select Book;
-            var book = query.ToList();
+            try
+            {
+                List<ShoppingCart> Cart = new List<ShoppingCart>();
+                var query = from Book in context.Books where Book.ID_Book == id select Book;
+                var book = query.ToList();
 
                 foreach (var z in book)
                 {
-                Cart cart = new Cart()
+                    Cart cart = new Cart()
                     {
-                        
                         _title = z.Title,
                         _price = z.Price,
                         _discount = 0,
@@ -146,18 +152,26 @@ namespace MediaPustaka.net.Controllers
                         Username = Session["Username"].ToString(),
                         Book_ID = z.ID_Book,
                         priceAD = z.Price - (z.Price * 0),
-                        _shelves = z.Shelves,                        
+                        _shelves = z.Shelves,
                     };
-                context.Carts.InsertOnSubmit(cart);
-                context.SubmitChanges();
+                    context.Carts.InsertOnSubmit(cart);
+                    context.SubmitChanges();
 
                 };
 
-            Book update = context.Books.Single(e => e.ID_Book == id);
-            update.Stock -= 1;
-            context.SubmitChanges();
+                Book update = context.Books.Single(e => e.ID_Book == id);
+                update.Stock -= 1;
+                context.SubmitChanges();
 
-            return RedirectToAction("Index", "Cart");
+                return RedirectToAction("Index", "Cart");
+            }
+            catch
+            {
+                return RedirectToAction("PleaseLogin", "Home");
+            }
+
+
+           
 
 
         }

@@ -6,78 +6,101 @@
 
 <h2>Shopping Cart</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_Cart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model._title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model._price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model._discount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model._genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model._shelves)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Book_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceAD)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_Cart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item._title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item._price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item._discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item._genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item._shelves)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Book_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceAD)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Book_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID_Cart })
-        </td>
-    </tr>
-}
 
-</table>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Discount</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
 
-<h3>@Html.ActionLink("Checkout", "Checkout", new { /* id=item.PrimaryKey */ })</h3>
+
+                <tbody>
+@foreach (var item in Model)
+{
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="~/Source/content/@Html.DisplayFor(model => item.Img)" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">@Html.DisplayFor(modelItem => item._title)</h4>
+                                    <h5 class="media-heading"> genre <a href="#">@Html.DisplayFor(modelItem => item._genre)</a></h5>
+                                                              
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>@Html.DisplayFor(modelItem => item._discount)%</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>Rp. @Html.DisplayFor(modelItem => item._price)</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>Rp. @Html.DisplayFor(modelItem => item._price)</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.ID_Cart })';return false;">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+}         
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Subtotal</h5></td>
+                        <td class="text-right"><h5><strong>@ViewBag.SUM</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Discount</h5></td>
+                        <td class="text-right"><h5><strong>@ViewBag.Discount %</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>@ViewBag.TOTAL</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Books")';return false;">
+                                <span class="glyphicon glyphicon-shopping-cart" onclick="location.href='@Url.Action("Checkout")';return false;"></span> Continue Shopping
+                            </button>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Checkout", "Cart", FormMethod.Get))
+                            {
+                                //the following are search options
+                                <b> Search Option: </b>
+                                <select name="Pemayaran">
+                                    <option value="Cash">Cash</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                </select>
+                                <button type="submit" name="Submit" class="btn btn-success">
+                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                            }
+
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+

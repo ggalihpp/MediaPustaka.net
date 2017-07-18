@@ -29,9 +29,25 @@ namespace MediaPustaka.net.Controllers
 
         public ActionResult Loading()
         {
-            ViewBag.Messag = "Thank you, We'll redirecting you to our homepage . . .";
+            ViewBag.Message = "Thank you, We'll redirecting you to our homepage . . .";
 
             Response.AddHeader("REFRESH", "3;URL=../Books/Index");
+            return View();
+        }
+
+        public ActionResult PleaseLogin()
+        {
+            ViewBag.Message = "Please Login To Access This Page . . .";
+
+            Response.AddHeader("REFRESH", "3;URL=../User/Login");
+            return View();
+        }
+
+        public ActionResult AdminOnly()
+        {
+            ViewBag.Message = "This is restricted Area . . .";
+
+            Response.AddHeader("REFRESH", "3;URL=../User/Login");
             return View();
         }
     }

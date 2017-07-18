@@ -24,5 +24,13 @@ namespace MediaPustaka.net.Models
         public int Stock { get; set; }
 
         public string Shelves { get; set; }
+        
+        public string Img
+        {
+            get
+            {
+                return Title.ToLower().Replace(" ", "-") + ".jpg";
+            }
+        }
     }
 }

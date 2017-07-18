@@ -22,7 +22,7 @@
             <div class="wrapper row">
                 <div class="preview col-md-6">
                     <div class="preview-pic tab-content">
-                        <div class="tab-pane active" id="pic-1"><img src="https://www.kaft.com/static/images/cache/313/tisort_ozgurruh_1990_313_313.jpg?cacheID=1429301256000" /></div>
+                        <div class="tab-pane active" id="pic-1"><img src="~/Source/content/@Html.DisplayFor(model => model.Img)" /></div>
                     </div>
                 </div>
                 <div class="details col-md-6">
@@ -50,7 +50,7 @@
                         <h2><font color="purple">Rp. @Html.DisplayFor(model => model.Price)</h2></font>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-lg btn-add-to-cart" onclick="location.href='@Url.Action("Add", "Books", new { id = ViewBag.ID })';return false;">
+                        <button class="btn btn-lg btn-add-to-cart" onclick="location.href='@Url.Action("Add", "Books", new { id = @ViewBag.Id   })';return false;">
                             <span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart
                         </button>
                     </div>

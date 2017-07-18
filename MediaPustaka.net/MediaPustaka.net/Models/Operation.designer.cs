@@ -42,6 +42,9 @@ namespace MediaPustaka.net.Models
     partial void InsertBook(Book instance);
     partial void UpdateBook(Book instance);
     partial void DeleteBook(Book instance);
+    partial void InsertAdminPanel(AdminPanel instance);
+    partial void UpdateAdminPanel(AdminPanel instance);
+    partial void DeleteAdminPanel(AdminPanel instance);
     #endregion
 		
 		public OperationDataContext() : 
@@ -103,6 +106,14 @@ namespace MediaPustaka.net.Models
 			get
 			{
 				return this.GetTable<Book>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AdminPanel> AdminPanels
+		{
+			get
+			{
+				return this.GetTable<AdminPanel>();
 			}
 		}
 	}
@@ -1026,6 +1037,116 @@ namespace MediaPustaka.net.Models
 					this._Images = value;
 					this.SendPropertyChanged("Images");
 					this.OnImagesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AdminPanel")]
+	public partial class AdminPanel : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _Diskon_global;
+		
+		private string _Progam;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnDiskon_globalChanging(int value);
+    partial void OnDiskon_globalChanged();
+    partial void OnProgamChanging(string value);
+    partial void OnProgamChanged();
+    #endregion
+		
+		public AdminPanel()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diskon_global", DbType="Int NOT NULL")]
+		public int Diskon_global
+		{
+			get
+			{
+				return this._Diskon_global;
+			}
+			set
+			{
+				if ((this._Diskon_global != value))
+				{
+					this.OnDiskon_globalChanging(value);
+					this.SendPropertyChanging();
+					this._Diskon_global = value;
+					this.SendPropertyChanged("Diskon_global");
+					this.OnDiskon_globalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Progam", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Progam
+		{
+			get
+			{
+				return this._Progam;
+			}
+			set
+			{
+				if ((this._Progam != value))
+				{
+					this.OnProgamChanging(value);
+					this.SendPropertyChanging();
+					this._Progam = value;
+					this.SendPropertyChanged("Progam");
+					this.OnProgamChanged();
 				}
 			}
 		}

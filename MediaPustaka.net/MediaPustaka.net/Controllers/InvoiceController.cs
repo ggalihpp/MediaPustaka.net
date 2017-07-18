@@ -19,35 +19,45 @@ namespace MediaPustaka.net.Controllers
         // GET: Invoice
         public ActionResult Index()
         {
-            // Create the  BooksList Variable
-            List<InvoiceModel> Invoice = new List<InvoiceModel>();
-
-            // perform Linq
-            var query = from xxx in context.Invoices where xxx._username == Session["Username"].ToString() select xxx;
-
-            //store those thing to list
-            var CS = query.ToList();
-
-
-            //Add Books to Booklist
-            foreach (var x in CS)
+            try
             {
-                Invoice.Add(new InvoiceModel()
+                // Create the  BooksList Variable
+                List<InvoiceModel> Invoice = new List<InvoiceModel>();
+
+                // perform Linq
+                var query = from xxx in context.Invoices where xxx._username == Session["Username"].ToString() select xxx;
+
+                //store those thing to list
+                var CS = query.ToList();
+
+
+                //Add Books to Booklist
+                foreach (var x in CS)
                 {
-                    Diskon = x.Diskon_global,
-                    ID = x.Order_id,
-                    Jumlah_Buku = x.Jumlah_buku,
-                    Jumlah_Harga = x.Jumlah_harga,
-                    Kasir = x.Kasir,
-                    Tanggal = x.Tanggal,
-                    Total = x.Total,
-                    User = x._username,
-                    Pembayaran = x.Pembayaran
-                });
+                    Invoice.Add(new InvoiceModel()
+                    {
+                        Diskon = x.Diskon_global,
+                        ID = x.Order_id,
+                        Jumlah_Buku = x.Jumlah_buku,
+                        Jumlah_Harga = x.Jumlah_harga,
+                        Kasir = x.Kasir,
+                        Tanggal = x.Tanggal,
+                        Total = x.Total,
+                        User = x._username,
+                        Pembayaran = x.Pembayaran
+                    });
+                }
+
+
+                return View(Invoice);
+            }
+            catch
+            {
+                return RedirectToAction("PleaseLogin", "Home");
             }
 
 
-            return View(Invoice);
+
         }
     }
 }

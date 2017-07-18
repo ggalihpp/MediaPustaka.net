@@ -24,5 +24,13 @@ namespace MediaPustaka.net.Models
         public int Book_ID { get; set; }
 
         public decimal PriceAD { get; set; }
+
+        public string Img
+        {
+            get
+            {
+                return _title.ToLower().Replace(" ", "-") + ".jpg";
+            }
+        }
     }
 }

@@ -1,75 +1,85 @@
 ﻿@model IEnumerable<MediaPustaka.net.Models.InvoiceModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Invoice";
 }
 
 <h2>Invoice</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jumlah_Buku)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jumlah_Harga)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Diskon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kasir)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tanggal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pembayaran)
-        </th>
-        <th></th>
-    </tr>
+<div style="margin:5% 40% 0% 33%;float:left; width:500px; box-shadow:0 0 3px #aaa; height:auto;color:#000;">
+    <div style="width:100%; padding:10px; float:left; background:#1ca8dd; color:#fff; font-size:30px; text-align:center;">
+        Invoice
+    </div>
+    <div style="width:100%; padding:0px 0px;border-bottom:1px solid rgba(0,0,0,0.2);float:left;">
+        <div style="width:30%; float:left;padding:10px;">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jumlah_Buku)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jumlah_Harga)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Diskon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kasir)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tanggal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pembayaran)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+            <span style="font-size:14px;float:left; width:100%;">
+                @Html.DisplayFor(x => x.Last().User)
+            </span>
+            <span style="font-size:14px;float:left;width:100%;">
+                21, jessika street ,
+                shennoanagarnagar
+            </span>
+            <span style="font-size:14px;float:left;width:100%;">
+                jessika@gmail.com
+            </span>
+        </div>
 
-</table>
+        <div style="width:40%; float:right;padding:">
+            <span style="font-size:14px;float:right;  padding:10px; text-align:right;">
+                <b>Date : </b>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.Last().Tanggal))
+            </span>
+            <span style="font-size:14px;float:right;  padding:10px; text-align:right;">
+                <b>Invoice# : </b>MPN-@Html.DisplayFor(x => x.Last().ID)
+            </span>
+        </div>
+    </div>
+
+
+
+
+    <div style="width:100%; padding:0px; float:left;">
+
+        <div style="width:100%;float:left;background:#efefef;">
+            <span style="float:left; text-align:left;padding:10px;width:50%;color:#000;font-weight:600;">
+                Decription
+            </span>
+            <span style="font-weight:600;float:left;padding:10px ;width:40%;color:#000;text-align:right;">
+                Amount
+            </span>
+        </div>
+
+        <div style="width:100%;float:left;color:#000;">
+            <span style="float:left; text-align:left;padding:10px;width:50%;color:#000;">
+                Books
+
+
+                <span style="font-size:10px; float:left; width:100%;color:#000;">
+                    (@Html.DisplayFor(x => x.Last().Jumlah_Buku) pcs)
+                </span>
+            </span>
+            <span style="font-weight:normal;float:left;padding:10px ;width:40%;color:#000;text-align:right;">
+                Rp. @Html.DisplayFor(x => x.Last().Jumlah_Harga)
+            </span>
+        </div>
+        <div style="width:100%;float:left;">
+            <span style="float:left; text-align:left;padding:10px;width:50%;color:#000;">
+                Discount
+                <span style="font-size:10px; float:left; width:100%;">
+                    (@Html.DisplayFor(x => x.Last().Diskon)%)
+                </span>
+            </span>
+            <span style="font-weight:normal;float:left;padding:10px ;width:40%;color:#000;text-align:right;">
+                Rp. @ViewBag.Diskonan
+            </span>
+        </div>
+
+        <div style="width:100%;float:left; background:#fff;">
+
+            <span style="font-weight:600;float:right;padding:10px 0px;width:40%;color:#000;text-align:center;">
+                Total : Rp. @Html.DisplayFor(x => x.Last().Total)
+            </span>
+        </div>
+    </div>
+</div>
+

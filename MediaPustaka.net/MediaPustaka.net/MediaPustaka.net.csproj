@@ -151,6 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\BooksModel.cs" />
     <Compile Include="Models\InvoiceModel.cs" />
     <Compile Include="Models\Operation.designer.cs">
@@ -224,6 +225,8 @@
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_Partial.cshtml" />
+    <Content Include="Views\Home\PleaseLogin.cshtml" />
+    <Content Include="Views\Home\AdminOnly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
