@@ -77,21 +77,23 @@
                             </button>
                         </td>
                         <td>
-                            @using (Html.BeginForm("Checkout", "Cart", FormMethod.Get))
-                            {
-                                //the following are search options
-                                <b> Search Option: </b>
-                                <select name="Pemayaran">
-                                    <option value="Cash">Cash</option>
-                                    <option value="Credit Card">Credit Card</option>
-                                    <option value="Debit Card">Debit Card</option>
-                                </select>
-                                <button type="submit" name="Submit" class="btn btn-success">
-                                    Checkout <span class="glyphicon glyphicon-play"></span>
-                                </button>
-                            }
+                            <button type="submit" name="Submit" class="btn btn-success">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </button>
 
-                            
+                                @*@using (Html.BeginForm("Checkout", "Cart", FormMethod.Get))
+                                {
+                                    //the following are search options
+                                    <b> Search Option: </b>
+                                    <select name="Pemayaran">
+                                        <option value="Cash">Cash</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Debit Card">Debit Card</option>
+                                    </select>
+                                    <button type="submit" name="Submit" class="btn btn-success">
+                                        Checkout <span class="glyphicon glyphicon-play"></span>
+                                    </button>
+                                }*@    
                         </td>
                     </tr>
                 </tbody>

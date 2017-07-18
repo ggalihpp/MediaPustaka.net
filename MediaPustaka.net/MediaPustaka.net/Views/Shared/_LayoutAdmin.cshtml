@@ -1,0 +1,43 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/AdminStyle.css" />
+</head>
+
+<body>
+<div class="container">
+    <div class="oneFifth">
+        <div class="userPanel">
+
+            <div class="userName">
+                <span class="userNameSpan show">@Session["Username"]</span>
+                <a href='@Url.Action("Logout", "User")'><i class="fa fa-power-off logout"></i></a>
+            </div>
+
+            <div class="userMenu">
+                <ul>
+                    <li><a href='@Url.Action("Customer")' class="zoom"><i class="fa fa-users Icon"></i><span class="show">User Panel</span></a></li>
+                    <li><a href='@Url.Action("Carts")' class="zoom"><i class="fa fa-cart-plus Icon"></i><span class="show">Carts</span></a></li>
+                    <li><a href='@Url.Action("Book")' class="zoom"><i class="fa fa-book Icon"></i><span class="show">Books</span></a></li>
+                    <li><a href='@Url.Action("Invoice")' class="zoom"><i class="fa fa-file-text-o Icon"></i><span class="show">Invoice</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="fourFifth">
+        <div class="userContent">
+            @RenderBody()
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html> 

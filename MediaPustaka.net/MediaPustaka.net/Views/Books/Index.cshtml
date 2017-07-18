@@ -5,76 +5,23 @@
 }
 
 <script>
-    //$(document).ready(function () {
-    //    $('#myCarousel').carousel({
-    //        interval: 10000
-    //    })
-    //    $('.fdi-Carousel .item').each(function () {
-    //        var next = $(this).next();
-    //        if (!next.length) {
-    //            next = $(this).siblings(':first');
-    //        }
-    //        next.children(':first-child').clone().appendTo($(this));
-
-    //        if (next.next().length > 0) {
-    //            next.next().children(':first-child').clone().appendTo($(this));
-    //        }
-    //        else {
-    //            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    //        }
-    //    });
-    //});
+    $(document).ready(function (e) {
+        $('.search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
 </script>
 
 <div style="margin-top: 25px;"></div>
 
 <!-- #region NOT FUNTIONAL -->
+  
 
-@*<div class="slider">
-        <div class="slider-row"></div>
-    </div>
-
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="box"></div>
-                <div class="carousel-caption">
-                    <h3>First Text</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="box"></div>
-                <div class="carousel-caption">
-                    <h3>Second Text</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="box"></div>
-                <div class="carousel-caption">
-                    <h3>Third Text</h3>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    </div> <!-- Carousel -->*@
-
-
-@*<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
         <!-- Overlay -->
         <div class="overlay"></div>
         <!-- Indicators -->
@@ -90,93 +37,102 @@
                 <div class="slide-1"></div>
                 <div class="hero">
                     <hgroup>
-                        <h1>We are creative</h1>
-                        <h3>Get start your next awesome project</h3>
+                        <h1>Book is LOVE</h1>
+                        <h3>Get Our best deals . . .</h3>
                     </hgroup>
-                    <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                    
                 </div>
             </div>
             <div class="item slides">
                 <div class="slide-2"></div>
                 <div class="hero">
                     <hgroup>
-                        <h1>We are smart</h1>
-                        <h3>Get start your next awesome project</h3>
+                        <h1>Book is LIFE</h1>
+                        <h3>When you read Book, You'll know a lot.</h3>
                     </hgroup>
-                    <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                    
                 </div>
             </div>
             <div class="item slides">
                 <div class="slide-3"></div>
                 <div class="hero">
                     <hgroup>
-                        <h1>We are amazing</h1>
-                        <h3>Get start your next awesome project</h3>
+                        <h1>Motivational Word</h1>
+                        <h3>"Insert Inspirational Quote Here"</h3>
                     </hgroup>
-                    <button class="btn btn-hero btn-lg" role="button">See all features</button>
+                   
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
 
 <!-- #endregion -->
 
 
 
-<!-- #region NOT FUNTIONAL -->
-
-@using (Html.BeginForm("Search", "Books", FormMethod.Get))
+<!-- #region Search Button -->
+<div style="margin:0 auto; width:400px; margin-top:20px; align-items:center; text-align:center;">
+    @using (Html.BeginForm("Search", "Books", FormMethod.Get))
     {
         //the following are search options
-                @Html.DropDownList("option",
-                                new SelectList(ViewBag.Option),
-                                "Select Option",
-                                new { @class = "form-control" })
-            <text>Subject</text> @Html.TextBox("search")
-            <input type="submit" name="submit" value="Search" />
+        @Html.DropDownList("option",
+                             new SelectList(ViewBag.Option),
+                             "Select Option",
+                             new { @class = "form-control" })
+        @Html.TextBox("search", null, new { @class = "form-control" })
+        <input type="submit" name="submit" value="Search" class="btn btn-primary text-center"  style="margin-top:5px;"/>
     }
+
+</div>
 
 <!-- #endregion -->
 
 
-<div class="row">
-@foreach (var item in Model)
-{
-    <div class="col-md-4 margin-bot">
-        <div class="thumbnail">
-            <img src="~/Source/content/@item.Img">
-            <div class="caption">
-                <h4 class="pull-right">Rp. @Html.DisplayFor(modelItem => item.Price)</h4>
-                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+
+
+<div class="container body-content">
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 margin-bot">
+                <div class="thumbnail">
+                    <img src="~/Source/content/@item.Img">
+                    <div class="caption">
+                        <h4 class="pull-right">Rp. @Html.DisplayFor(modelItem => item.Price)</h4>
+                        <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button" class="btn btn-add-to-cart" data-toggle="modal" data-target="#LoginModal">Add to Cart</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Cart", new { id = item.Id_Book })';return false;">Details</button>
+                        <div class="pull-right">Stock : @item.Stock</div>
+                    </div>
+                </div>
             </div>
-            <div class="ratings">
-                <button type="button" class="btn btn-add-to-cart" data-toggle="modal" data-target="#LoginModal">Add to Cart</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Cart", new { id = item.Id_Book })';return false;">Details</button>
-            </div>
-        </div>  
-    </div>
 
  <!-- AddToCart MODAL -->
-    <div class="modal fade" id="LoginModal" role="">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add to Cart </h4>
-                </div>
-                <div class="modal-body">
-                    <p>Are You sure to add the item to cart?.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Add", "Books", new { id = item.Id_Book })';return false;">Yes</button>
-                    <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">No</button>
+            <div class="modal fade" id="LoginModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add to Cart </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are You sure to add the item to cart?.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Add", "Books", new { id = item.Id_Book })';return false;">Yes</button>
+                            <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+
+        }
     </div>
 
 
-}
 </div>
-

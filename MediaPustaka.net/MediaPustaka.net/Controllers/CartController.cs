@@ -8,10 +8,8 @@ using System.Web.Mvc;
 namespace MediaPustaka.net.Controllers
 {
     public class CartController : Controller
-    {
-       
+    {             
         private OperationDataContext context;
-
 
         public CartController()
         {
@@ -53,11 +51,15 @@ namespace MediaPustaka.net.Controllers
                     });
                 }
 
-                var sum = context.Carts.Sum(q => q._price);
+                int Diskon_global = (from x in context.AdminPanels select x.Diskon_global).FirstOrDefault();
+                var qq = (from x in context.Carts where x.Username == Session["Username"].ToString() select x);
+                var sum2 = qq.Sum(q => q._price);
+                float Diskonan = (float)(sum2 * Diskon_global / 100);
 
-                ViewBag.Discount = 30;
-                ViewBag.SUM = sum;
-                ViewBag.TOTAL = sum - (sum * (30 / 100));
+                ViewBag.Discount = Diskon_global;
+                ViewBag.SUM = sum2;
+                ViewBag.TOTAL = (float)sum2 - Diskonan;
+                    
 
 
                 return View(CartList);
@@ -65,6 +67,7 @@ namespace MediaPustaka.net.Controllers
             }
             catch
             {
+
                 return RedirectToAction("PleaseLogin", "Home");
             }
 
@@ -106,13 +109,11 @@ namespace MediaPustaka.net.Controllers
             try
             { 
                 Cart cart = context.Carts.Where(xx => xx.ID_Cart == id).Single<Cart>();
-               
-                context.Carts.DeleteOnSubmit(cart);
-                context.SubmitChanges();
+                Book update = context.Books.Single(e => e.ID_Book == cart.Book_ID);
 
-                //Book update = context.Books.Single(e => e.ID_Book == id);
-                //update.Stock += 1;
-                //context.SubmitChanges();
+                context.Carts.DeleteOnSubmit(cart);
+                update.Stock += 1;
+                context.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
@@ -157,7 +158,7 @@ namespace MediaPustaka.net.Controllers
 
             ViewBag.Pemb = Option;
 
-            int Diskon_global = 30; 
+            int Diskon_global = (from x in context.AdminPanels select x.Diskon_global).FirstOrDefault(); 
             #region Random Cashier (sorry :(()
       
             List<string> sumber = new List<string>()
@@ -175,46 +176,45 @@ namespace MediaPustaka.net.Controllers
 
             #endregion
 
-            //try
-            //{
+            try
+            {
 
                 #region Insert Data to Checkout
                 int count = (from x in context.Carts where x.Username == Session["Username"].ToString() select x).Count();
+                var qq = (from x in context.Carts where x.Username == Session["Username"].ToString() select x);
+                var sum2 = qq.Sum(q => q._price);
                 var sum = context.Carts.Sum(q => q._price);
-                float Diskonan = (float)sum * (float)(Diskon_global / 100);
+                float Diskonan = (float)(sum2 * Diskon_global / 100);
                 Invoice inv = new Invoice()
                 {
                     Tanggal = DateTime.Now,
                     _username = Session["Username"].ToString(),
                     Diskon_global = Diskon_global,
                     Jumlah_buku = count,
-                    Jumlah_harga = sum,
-                    Total = (float)sum - Diskonan,
+                    Jumlah_harga = sum2,
+                    Total = (float)sum2 - Diskonan,
                     Kasir = Cashier,
                     Pembayaran = "Cash"
                 };
                 context.Invoices.InsertOnSubmit(inv);
                 context.SubmitChanges();
-            #endregion
+                #endregion
 
-            #region Delete From Cart
-            var query = from Cart in context.Carts where Cart.Username == Session["Username"].ToString() select Cart;
-            //Cart cart = (from x in context.Carts where x.Username == Session["Username"].ToString() select x).ToList();
+                #region Delete From Cart
+                var query = from Cart in context.Carts where Cart.Username == Session["Username"].ToString() select Cart;
+      
+                context.Carts.DeleteAllOnSubmit(query);
+                context.SubmitChanges();
+                #endregion
 
-            //context.ExecuteCommand("DELETE FROM Dbo.Carts WHERE Username={0}");
-
-            context.Carts.DeleteAllOnSubmit(query);
-            context.SubmitChanges();
-            #endregion
-
-                ViewBag.Diskonan = Diskonan;
+                Session["Diskon"] = Diskonan;
 
                 return RedirectToAction("Index", "Invoice");
-            //}
-            //catch
-            //{
-            //    return RedirectToAction("PleaseLogin", "Home");
-            //}
+            }
+            catch
+            {
+                return RedirectToAction("PleaseLogin", "Home");
+            }
 
         }
     }

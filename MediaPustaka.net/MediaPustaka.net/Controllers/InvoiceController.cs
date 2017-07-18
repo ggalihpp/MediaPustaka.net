@@ -10,6 +10,7 @@ namespace MediaPustaka.net.Controllers
     public class InvoiceController : Controller
     {
         private OperationDataContext context;
+        
 
         public InvoiceController()
         {
@@ -26,14 +27,16 @@ namespace MediaPustaka.net.Controllers
 
                 // perform Linq
                 var query = from xxx in context.Invoices where xxx._username == Session["Username"].ToString() select xxx;
-
+                var user = from Z in context.Admins where Z.Name == Session["Username"].ToString() select Z.Email;
                 //store those thing to list
                 var CS = query.ToList();
-
+                
+                
 
                 //Add Books to Booklist
                 foreach (var x in CS)
                 {
+                   
                     Invoice.Add(new InvoiceModel()
                     {
                         Diskon = x.Diskon_global,
@@ -48,6 +51,7 @@ namespace MediaPustaka.net.Controllers
                     });
                 }
 
+                ViewBag.Email = user;
 
                 return View(Invoice);
             }

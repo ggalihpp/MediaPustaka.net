@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MediaPustaka.net.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Invoice</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jumlah_Buku)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jumlah_Harga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diskon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kasir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tanggal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pembayaran)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jumlah_Buku)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jumlah_Harga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diskon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kasir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tanggal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pembayaran)
+        </td>
+    </tr>
+}
+
+</table>
